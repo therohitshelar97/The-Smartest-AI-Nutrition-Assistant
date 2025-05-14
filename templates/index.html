@@ -47,6 +47,13 @@
           animation-timing-function: 5s;
           animation-iteration-count: infinite;
         }
+        body {
+            background-image: url("{{ url_for('static', filename='images/lifestyle.jpg') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+        }
 
         /* @keyframes  eg {
            10%{font-size:40px}
@@ -115,15 +122,18 @@
        
     <div class="container">
         <div class="row mt-5">
-            <div class="col-6 offset-3">
+          <div class="col-3">
+            <!-- <img src="{{url_for('static',filename='images/food.jpg')}}" height="400px" width="100%" /> -->
+          </div>
+            <div class="col-6 ">
              
                 <div class="" id="text">
                     <form action="{{url_for('handle_text_input')}}" method="POST">
-                        Health_Goal:<input type="text" name="hg" class="form-control">
-                        Diet:<input type="text" name="diet" class="form-control">
-                        allergies:<input type="text" name="allergies" class="form-control" />
-                        activity_level:<input type="text" name="al" class="form-control" />
-                        meal_type:<input type="text" name="mt" class="form-control" />
+                        Health_Goal:<input type="text" name="hg" class="form-control" placeholder="Enter Goal Like Weight Loss, Weight Gain etc">
+                        Diet:<input type="text" name="diet" class="form-control" placeholder="Enter Diet Like Veg, Non Veg, Sea Foods etc">
+                        allergies:<input type="text" name="allergies" class="form-control" placeholder="Enter food allergies like Meat, Chicken etc" />
+                        activity_level:<input type="text" name="al" class="form-control" placeholder="Enter the Activity level like Moderate, Light Active etc" />
+                        meal_type:<input type="text" name="mt" class="form-control" placeholder="Enter Meal type like, Dinner, BreakFast, Week" />
                         <br>
                         <input type="submit" value="Submit" class="btn btn-success" />
                     </form>
@@ -151,6 +161,9 @@
                 </div>
           
             </div>
+             <!-- <div class="col-3">
+            <img src="{{url_for('static',filename='images/run.jpg')}}" height="400px" width="100%" />
+          </div> -->
         </div>
     </div>
 
