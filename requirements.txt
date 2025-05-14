@@ -1,0 +1,10 @@
+Flask
+groq
+pytesseract
+Pillow
+SpeechRecognition
+easyocr
+torch
+torchvision
+markdown
+pydub
