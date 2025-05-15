@@ -34,13 +34,28 @@ def build_prompt(user_input_text_or_dict):
         return f"""
 You are a smart AI Nutrition Assistant.
 
-Create a personalized {user_input_text_or_dict['meal_type']} plan for someone with the following profile:
-- Health goal: {user_input_text_or_dict['health_goal']}
-- Diet: {user_input_text_or_dict['diet']}
-- Allergies: {', '.join(user_input_text_or_dict['allergies'])}
-- Activity level: {user_input_text_or_dict['activity_level']}
+Based on the user's weight and height, calculate their BMI and decide whether they should focus on weight loss or weight gain. Clearly mention your recommendation and explain why.
 
-Then explain briefly why the chosen meal is good for their goal.
+Then, create a personalized {user_input_text_or_dict['meal_type']} plan for the following profile:
+
+Weight: {user_input_text_or_dict['weight']} kg
+
+Height: {user_input_text_or_dict['height']} cm
+
+Country: {user_input_text_or_dict['country']} country wise
+state: {user_input_text_or_dict['state']} state wise
+
+Diet Preference: {user_input_text_or_dict['diet']}
+
+Allergies: {user_input_text_or_dict['allergies']}
+
+Activity Level: {user_input_text_or_dict['activity_level']}
+
+
+also expalin how many calories this food contains and quantity of food,
+
+Then explain briefly why the chosen meal is good for their goal,
+
 """
     else:
         return f"""
@@ -62,19 +77,29 @@ def get_groq_response(prompt):
 
 @app.route('/',methods=['POST'])
 def handle_text_input():
-    health_goal = request.form.get('hg')
+    height = request.form.get('height')
+    weight = request.form.get('weight')
     diet = request.form.get('diet')
     allergies = request.form.get('allergies')
     activity_level = request.form.get('al')
     meal_type = request.form.get('mt')
-    print(health_goal,diet,allergies,activity_level,meal_type)
+    country = "none"
+    state = "none"
+    if request.form.get('country'):
+        country = request.form.get('country')
+    if request.form.get('state'):
+        state = request.form.get('state')
+    # print(health_goal,diet,allergies,activity_level,meal_type)
 
     user_input = {
-        "health_goal": health_goal,
+        "height": height,
+        "weight":weight,
         "diet": diet,
         "allergies": allergies,
         "activity_level": activity_level,
-        "meal_type": meal_type
+        "meal_type": meal_type,
+        "country":country,
+        "state":state
     }
     prompt = build_prompt(user_input)
     response = get_groq_response(prompt)

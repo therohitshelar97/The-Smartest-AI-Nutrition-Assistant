@@ -129,11 +129,39 @@
              
                 <div class="" id="text">
                     <form action="{{url_for('handle_text_input')}}" method="POST">
-                        Health_Goal:<input type="text" name="hg" class="form-control" placeholder="Enter Goal Like Weight Loss, Weight Gain etc">
-                        Diet:<input type="text" name="diet" class="form-control" placeholder="Enter Diet Like Veg, Non Veg, Sea Foods etc">
+                        <!-- Health_Goal:<input type="text" name="hg" class="form-control" placeholder="Enter Goal Like Weight Loss, Weight Gain etc"> -->
+                        Height:<input type="text" name="height" class="form-control" placeholder="Enter Hight Like 4 feet, 5 feet etc">
+                        Weight:<input type="text" name="weight" class="form-control" placeholder="Enter Hight Like 50kg feet, 90kg">
+                        <label for="diet">Diet:</label>
+                        <select name="diet" id="diet" class="form-control">
+                          <option value="">Select Diet</option>
+                          <option value="Vegetarian">Vegetarian</option>
+                          <option value="Non-Vegetarian">Non-Vegetarian</option>
+                          <option value="Vegan">Vegan</option>
+                          <option value="Seafood">Seafood</option>
+                        </select>
                         allergies:<input type="text" name="allergies" class="form-control" placeholder="Enter food allergies like Meat, Chicken etc" />
-                        activity_level:<input type="text" name="al" class="form-control" placeholder="Enter the Activity level like Moderate, Light Active etc" />
-                        meal_type:<input type="text" name="mt" class="form-control" placeholder="Enter Meal type like, Dinner, BreakFast, Week" />
+                        <label for="al">Activity Level:</label>
+                        <select name="al" id="al" class="form-control">
+                          <option value="">Select Activity Level</option>
+                          <option value="Sedentary">Sedentary</option>
+                          <option value="Light">Light</option>
+                          <option value="Moderate">Moderate</option>
+                          <option value="Active">Active</option>
+                          <option value="Very Active">Very Active</option>
+                        </select>
+                       <label for="mt">Meal Type:</label>
+                      <select name="mt" id="mt" class="form-control">
+                        <option value="">Select Meal Type</option>
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Lunch">Lunch</option>
+                        <option value="Dinner">Dinner</option>
+                        <option value="Snack">Snack</option>
+                        <option value="Weekly Plan">Weekly Plan</option>
+                        <option value="Monthly Plan">Monthly Plan</option>
+                      </select>
+                      Country (optiona):<input type="text" class="form-control" name="country" placeholder="Enter your Country" />
+                      State/Region (optiona):<input type="text" class="form-control" name="state" placeholder="Enter your Region/State" />
                         <br>
                         <input type="submit" value="Submit" class="btn btn-success" />
                     </form>
