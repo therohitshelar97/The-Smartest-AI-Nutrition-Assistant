@@ -41,7 +41,7 @@ Then, create a personalized {user_input_text_or_dict['meal_type']} plan for the 
 Weight: {user_input_text_or_dict['weight']} kg
 
 Height: {user_input_text_or_dict['height']} cm
-
+Medical Problem : {user_input_text_or_dict['medical']}
 Country: {user_input_text_or_dict['country']} country wise
 state: {user_input_text_or_dict['state']} state wise
 
@@ -85,6 +85,9 @@ def handle_text_input():
     meal_type = request.form.get('mt')
     country = "none"
     state = "none"
+    medical = "none"
+    if request.form.get("medical"):
+        medical = request.form.get("medical")
     if request.form.get('country'):
         country = request.form.get('country')
     if request.form.get('state'):
@@ -98,6 +101,7 @@ def handle_text_input():
         "allergies": allergies,
         "activity_level": activity_level,
         "meal_type": meal_type,
+        "medical": medical,
         "country":country,
         "state":state
     }
