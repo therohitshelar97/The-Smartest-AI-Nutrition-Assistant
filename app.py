@@ -22,7 +22,7 @@ app.config['UPLOAD_FOLDER'] = 'static/uploaded_images'
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 # === SET GROQ API KEY ===
-groq_api_key = "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"
+groq_api_key = "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"
 client = Groq(api_key=groq_api_key)
 
 @app.route('/')
@@ -33,14 +33,15 @@ def build_prompt(user_input_text_or_dict):
     if isinstance(user_input_text_or_dict, dict):
         return f"""
 You are a smart AI Nutrition Assistant.
-
-Based on the user's weight and height, calculate their BMI and decide whether they should focus on weight loss or weight gain. Clearly mention your recommendation and explain why.
+As I am {user_input_text_or_dict['gender']} also mention weather i am male or female
+Based on the user's weight and height and gender, calculate their BMI and decide whether they should focus on weight loss or weight gain. Clearly mention your recommendation and explain why.
 
 Then, create a personalized {user_input_text_or_dict['meal_type']} plan for the following profile:
 
 Weight: {user_input_text_or_dict['weight']} kg
 
 Height: {user_input_text_or_dict['height']} cm
+gender : {user_input_text_or_dict['gender']}
 Medical Problem : {user_input_text_or_dict['medical']}
 Country: {user_input_text_or_dict['country']} country wise
 state: {user_input_text_or_dict['state']} state wise
@@ -79,6 +80,7 @@ def get_groq_response(prompt):
 def handle_text_input():
     height = request.form.get('height')
     weight = request.form.get('weight')
+    gender = request.form.get('gender')
     diet = request.form.get('diet')
     allergies = request.form.get('allergies')
     activity_level = request.form.get('al')
@@ -97,6 +99,7 @@ def handle_text_input():
     user_input = {
         "height": height,
         "weight":weight,
+        "gender":gender,
         "diet": diet,
         "allergies": allergies,
         "activity_level": activity_level,
